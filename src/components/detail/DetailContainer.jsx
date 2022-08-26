@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "@emotion/styled";
 
+import { colors } from "../../lib/constants/colors";
 import CommonButton from "../common/button/CommonButton";
 
 const Container = styled.div`
@@ -13,12 +14,18 @@ const TitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 12px;
+  padding: 3%;
+  margin: 3%;
+  background-color: ${prop => prop.backgroundColor};
+  border-radius: 12px;
 `;
 
 const BodyWrapper = styled.div`
   height: 50vh;
-  padding: 12px 12px;
+  padding: 3%;
+  margin: 3%;
+  background-color: ${prop => prop.backgroundColor};
+  border-radius: 12px;
 `;
 
 const ButtonWrapper = styled.div`
@@ -45,7 +52,7 @@ const DetailContainer = (props) => {
 
   return (
     <Container>
-      <TitleWrapper>
+      <TitleWrapper backgroundColor={ colors.yellow }>
         <div className="title">
           { post.title }
         </div>
@@ -53,14 +60,14 @@ const DetailContainer = (props) => {
           { post.writer }
         </div>
       </TitleWrapper>
-      <BodyWrapper>
+      <BodyWrapper backgroundColor={ colors.yellow }>
         <div className="body">
           { post.body }
         </div>
       </BodyWrapper>
       <ButtonWrapper>
-        <CommonButton>
-          <span>수정하기</span>
+        <CommonButton backgroundColor={ colors.white } bodyColor={ colors.red } >
+          수정하기
         </CommonButton>
       </ButtonWrapper>
     </Container>
