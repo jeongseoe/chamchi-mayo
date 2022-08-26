@@ -11,4 +11,8 @@ x. Detail View
 
 
 #### Contributors 💻
-- 박정서 이민섭 김대현 이다현
+
+[박정서](https://github.com/jeongseoe)
+[이민섭](https://github.com/m1nsuppp)
+[김대현](https://github.com/daehyunk1m)
+[이다현](https://github.com/dahyun612)
