@@ -1,0 +1,1 @@
+export const signatureColor = '#055C94';
