@@ -1,11 +1,15 @@
 // 상세
-import CommonButton from "../components/common/button/CommonButton";
+import DetailContainer from "../components/detail/DetailContainer";
 
 const Detail = () => {
   return (
-    <CommonButton>
-      <span>여기는 상세페이지입니다!</span>
-    </CommonButton>
+    <div>
+      <header>
+        <div>this is header</div>
+      </header>
+      <div>뒤로 가기</div>
+      <DetailContainer />
+    </div>
   );
 };
 
