@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import styled from "@emotion/styled";
 
+import useFetchPost from "../../hooks/useFetchPosts";
 import { colors } from "../../lib/constants/colors";
 import CommonButton from "../common/button/CommonButton";
 
@@ -35,20 +35,9 @@ const ButtonWrapper = styled.div`
 `;
 
 const DetailContainer = (props) => {
-  const [post, setPost] = useState([]);
   const params = useParams();
   const postId = parseInt(params.id);
-
-  const fetchPosts = async() => {
-    const URL = 'http://localhost:5001/posts';
-    const response = await axios.get(URL).catch(error => console.log(error));
-    
-    setPost(response.data[postId - 1]);
-  };
-
-  useEffect(() => {
-    fetchPosts();
-  }, []);
+  const post = useFetchPost(postId);
 
   return (
     <Container>
