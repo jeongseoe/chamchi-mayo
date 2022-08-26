@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import styled from "@emotion/styled";
 
-import useFetchPost from "../../hooks/useFetchPosts";
+import useFetchPost from "../../hooks/useFetchPost";
 import { colors } from "../../lib/constants/colors";
 import CommonButton from "../common/button/CommonButton";
 
