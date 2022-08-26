@@ -4,6 +4,8 @@
 
 ### 기능 소개
 x. Detail View
+
+
 ![](https://velog.velcdn.com/images/m1nsuppp/post/51b0cbeb-b5f9-4d81-8403-bb4f3c443fca/image.png)
 - 다른 사람의 화풀이를 볼 수 있는 화면이에요.
 
