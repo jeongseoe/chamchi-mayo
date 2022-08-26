@@ -43,15 +43,15 @@ const DetailContainer = (props) => {
     <Container>
       <TitleWrapper backgroundColor={ colors.yellow }>
         <div className="title">
-          { post.title }
+          { post && post.title }
         </div>
         <div className="writer">
-          { post.writer }
+          { post && post.writer }
         </div>
       </TitleWrapper>
       <BodyWrapper backgroundColor={ colors.yellow }>
         <div className="body">
-          { post.body }
+          { post && post.body }
         </div>
       </BodyWrapper>
       <ButtonWrapper>
