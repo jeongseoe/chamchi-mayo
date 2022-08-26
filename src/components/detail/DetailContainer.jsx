@@ -1,4 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import styled from "@emotion/styled";
 
 import CommonButton from "../common/button/CommonButton";
@@ -26,19 +28,34 @@ const ButtonWrapper = styled.div`
 `;
 
 const DetailContainer = (props) => {
+  const [post, setPost] = useState([]);
+  const params = useParams();
+  const postId = parseInt(params.id);
+
+  const fetchPosts = async() => {
+    const URL = 'http://localhost:5001/posts';
+    const response = await axios.get(URL).catch(error => console.log(error));
+    
+    setPost(response.data[postId - 1]);
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
   return (
     <Container>
       <TitleWrapper>
         <div className="title">
-          제목
+          { post.title }
         </div>
         <div className="writer">
-          작성자
+          { post.writer }
         </div>
       </TitleWrapper>
       <BodyWrapper>
         <div className="body">
-          내용
+          { post.body }
         </div>
       </BodyWrapper>
       <ButtonWrapper>
