@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { colors } from "../../../lib/constants/colors";
 
 const Button = styled.button`
-  background-color: ${props => props.color};
+  background-color: ${props => props.backgroundColor};
+  color: ${props => props.bodyColor} !important;
   width: 80px;
   height: 30px;
   border-radius: 8px;
@@ -14,7 +14,7 @@ const Button = styled.button`
 
 const CommonButton = (props) => {
   return (
-    <Button color={ colors.blue }>
+    <Button backgroundColor={ props.backgroundColor } bodyColor={ props.bodyColor }>
       { props.children }
     </Button>
   );
