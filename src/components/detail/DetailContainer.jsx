@@ -13,7 +13,7 @@ const DetailContainer = (props) => {
   const modalRef = useRef();
   const params = useParams();
   const postId = parseInt(params.id);
-  const post = useFetchPosts(postId, false);
+  const post = useFetchPosts(postId);
   
   const onClickEdit = () => setIsClikedEdit(state => !state);
 
