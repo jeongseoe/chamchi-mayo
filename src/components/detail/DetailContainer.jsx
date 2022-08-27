@@ -15,9 +15,9 @@ const DetailContainer = (props) => {
   const postId = parseInt(params.id);
   const post = useFetchPost(postId);
   
-  const foo = () => setIsClikedEdit(state => !state);
+  const onClickEdit = () => setIsClikedEdit(state => !state);
 
-  useOnClickOutside(modalRef, foo);
+  useOnClickOutside(modalRef, onClickEdit);
 
   const renderModalEdit = () => {
     return (
@@ -66,7 +66,7 @@ const DetailContainer = (props) => {
           type="button"
           backgroundColor={ colors.white }
           bodyColor={ colors.red }>
-          <span onClick={ foo }>수정하기</span>
+          <span onClick={ onClickEdit }>수정하기</span>
         </CommonButton>
       </ButtonWrapper>
     </Container>
