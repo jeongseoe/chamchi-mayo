@@ -1,8 +1,8 @@
-import { useRef, useState, useEffect, } from "react";
+import { useRef, useState, } from "react";
 import { useParams } from "react-router-dom";
 import styled from "@emotion/styled";
 
-import useFetchPost from "../../hooks/useFetchPost";
+import useFetchPosts from "../../hooks/useFetchPosts";
 import ModalEdit from "./ModalEdit";
 import { colors } from "../../lib/constants/colors";
 import CommonButton from "../common/button/CommonButton";
@@ -13,7 +13,7 @@ const DetailContainer = (props) => {
   const modalRef = useRef();
   const params = useParams();
   const postId = parseInt(params.id);
-  const post = useFetchPost(postId);
+  const post = useFetchPosts(postId, false);
   
   const onClickEdit = () => setIsClikedEdit(state => !state);
 
