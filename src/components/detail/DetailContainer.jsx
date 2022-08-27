@@ -30,7 +30,7 @@ const DetailContainer = (props) => {
     };
   });
 
-  const ItemModalEdit = () => {
+  const renderModalEdit = () => {
     return (
     <ModalEdit ref={ modalRef }>
         <TitleWrapper backgroundColor={ colors.ivory }>
@@ -58,7 +58,7 @@ const DetailContainer = (props) => {
 
   return (
     <Container>
-      { isClikedEdit && ItemModalEdit() }
+      { isClikedEdit && renderModalEdit() }
       <TitleWrapper backgroundColor={ colors.ivory }>
         <div className="title">
           { post && post.title }
