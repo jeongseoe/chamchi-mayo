@@ -13,7 +13,7 @@ const ArrowBackStyle = styled.div`
 
 const Detail = () => {
   return (
-    <div>
+    <main>
       <Header />
       <ArrowBackStyle>
         <span className="material-symbols-outlined" style={ { color: colors.red, fontSize: "36px", } }>
@@ -21,7 +21,7 @@ const Detail = () => {
         </span>
       </ArrowBackStyle>
       <DetailContainer />
-    </div>
+    </main>
   );
 };
 
