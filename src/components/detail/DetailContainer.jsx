@@ -6,6 +6,7 @@ import useFetchPost from "../../hooks/useFetchPost";
 import ModalEdit from "./ModalEdit";
 import { colors } from "../../lib/constants/colors";
 import CommonButton from "../common/button/CommonButton";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 const DetailContainer = (props) => {
   const [isClikedEdit, setIsClikedEdit] = useState(false);
@@ -13,22 +14,10 @@ const DetailContainer = (props) => {
   const params = useParams();
   const postId = parseInt(params.id);
   const post = useFetchPost(postId);
+  
+  const foo = () => setIsClikedEdit(state => !state);
 
-  // 모달 영역을 벗어났는지 확인
-  const isClickModalOutside = (e) => {
-    if (isClikedEdit && !modalRef.current.contains(e.target)) {
-      setIsClikedEdit(false);
-    }
-  };
-
-  // clean-up 필수
-  useEffect(() => {
-    document.addEventListener('mousedown', isClickModalOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', isClickModalOutside);
-    };
-  });
+  useOnClickOutside(modalRef, foo);
 
   const renderModalEdit = () => {
     return (
@@ -77,7 +66,7 @@ const DetailContainer = (props) => {
           type="button"
           backgroundColor={ colors.white }
           bodyColor={ colors.red }>
-          <span onClick={ () => setIsClikedEdit(true) }>수정하기</span>
+          <span onClick={ foo }>수정하기</span>
         </CommonButton>
       </ButtonWrapper>
     </Container>
