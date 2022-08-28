@@ -5,6 +5,7 @@ const useOnClickOutside = (ref, handler) => {
   const isClickModalOutside = (e) => {
     if (!ref.current || !ref.current.contains(e.target)) {
       handler(e);
+
       return;
     }
   };
