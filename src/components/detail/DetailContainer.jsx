@@ -9,15 +9,15 @@ import CommonButton from "../common/button/CommonButton";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 const DetailContainer = (props) => {
-  const [isClikedEdit, setIsClikedEdit] = useState(false);
+  const [isClickEdit, setIsClickEdit] = useState(false);
   const modalRef = useRef();
   const params = useParams();
   const postId = parseInt(params.id);
   const post = useFetchPosts(postId);
   
-  const onClickEdit = () => setIsClikedEdit(state => !state);
+  const onClickOutside = () => setIsClickEdit(false);
 
-  useOnClickOutside(modalRef, onClickEdit);
+  useOnClickOutside(modalRef, onClickOutside);
 
   const renderModalEdit = () => {
     return (
@@ -47,7 +47,7 @@ const DetailContainer = (props) => {
 
   return (
     <Container>
-      { isClikedEdit && renderModalEdit() }
+      { isClickEdit && renderModalEdit() }
       <TitleWrapper backgroundColor={ colors.ivory }>
         <div className="title">
           { post && post.title }
@@ -66,7 +66,7 @@ const DetailContainer = (props) => {
           type="button"
           backgroundColor={ colors.white }
           bodyColor={ colors.red }>
-          <span onClick={ onClickEdit }>수정하기</span>
+          <span onClick={ () => setIsClickEdit(true) }>수정하기</span>
         </CommonButton>
       </ButtonWrapper>
     </Container>
