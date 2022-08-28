@@ -9,14 +9,11 @@ import { colors } from "../../lib/constants/colors";
 import CommonButton from "../common/button/CommonButton";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 
-const DetailContainer = (props) => {
+const DetailContainer = ({ post, postId }) => {
   const [isClickEdit, setIsClickEdit] = useState(false);
   const [title, setTitle] = useState('');
   const [body, setBdoy] = useState('');
   const modalRef = useRef();
-  const params = useParams();
-  const postId = parseInt(params.id);
-  const post = useFetchPosts(postId);
   
   const handleChangeTitle = (e) => {
     setTitle(e.target.value);
