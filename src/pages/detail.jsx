@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import { useParams } from "react-router-dom";
 
 import useFetchPosts from "../hooks/useFetchPosts";
-import { colors } from "../lib/constants/colors";
 import DetailContainer from "../components/detail/DetailContainer";
 import Header from "../components/common/header/Header";
 import Spinner from "../components/common/spinner/Spinner";
