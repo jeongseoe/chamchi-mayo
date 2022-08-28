@@ -1,9 +1,7 @@
 import { useRef, useState, } from "react";
-import { useParams } from "react-router-dom";
 import styled from "@emotion/styled";
 import axios from "axios";
 
-import useFetchPosts from "../../hooks/useFetchPosts";
 import ModalEdit from "./ModalEdit";
 import { colors } from "../../lib/constants/colors";
 import CommonButton from "../common/button/CommonButton";
@@ -14,7 +12,7 @@ const DetailContainer = ({ post, postId }) => {
   const [title, setTitle] = useState('');
   const [body, setBdoy] = useState('');
   const modalRef = useRef();
-  
+
   const handleChangeTitle = (e) => {
     setTitle(e.target.value);
   };
