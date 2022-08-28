@@ -1,6 +1,7 @@
 import { useRef, useState, } from "react";
 import { useParams } from "react-router-dom";
 import styled from "@emotion/styled";
+import axios from "axios";
 
 import useFetchPosts from "../../hooks/useFetchPosts";
 import ModalEdit from "./ModalEdit";
@@ -10,26 +11,47 @@ import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 const DetailContainer = (props) => {
   const [isClickEdit, setIsClickEdit] = useState(false);
+  const [title, setTitle] = useState('');
+  const [body, setBdoy] = useState('');
   const modalRef = useRef();
   const params = useParams();
   const postId = parseInt(params.id);
   const post = useFetchPosts(postId);
   
-  const onClickOutside = () => setIsClickEdit(false);
+  const handleChangeTitle = (e) => {
+    setTitle(e.target.value);
+  };
 
-  useOnClickOutside(modalRef, onClickOutside);
+  const handleChangeBody = (e) => {
+    setBdoy(e.target.value);
+  };
+
+  const URL = `http://localhost:3000/posts/${postId}`;
+  const data = {
+    title: title,
+    body: body,
+    timestamp: new Date().getTime(),
+  };
+
+  const handleUpdatePost = async (URL, data = {}) => {
+    const response = await axios.patch(URL, data);
+
+    window.location.reload();
+  };
 
   const renderModalEdit = () => {
     return (
     <ModalEdit ref={ modalRef }>
         <TitleWrapper backgroundColor={ colors.ivory }>
           <StyledTextarea
+            onChange={ handleChangeTitle }
             type="text" 
             placeholder={ post && post.title } 
             backgroundColor={ colors.ivory } />
         </TitleWrapper>
         <BodyWrapper backgroundColor={ colors.ivory }>
           <StyledTextarea 
+            onChange={ handleChangeBody }
             type="text" 
             placeholder="시원하게 속풀이 해요!!"
             backgroundColor={ colors.ivory } />
@@ -38,12 +60,16 @@ const DetailContainer = (props) => {
           <CommonButton
             backgroundColor = { colors.white }
             bodyColor={ colors.red }>
-            등록하기
+            <span onClick={ () => handleUpdatePost(URL, data) }>수정하기</span>
           </CommonButton>
         </ButtonWrapper>
       </ModalEdit>
     );
   };
+
+  const handleClickOutside = () => setIsClickEdit(false);
+
+  useOnClickOutside(modalRef, handleClickOutside);
 
   return (
     <Container>
