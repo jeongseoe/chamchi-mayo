@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { forwardRef } from "react";
 
-const ModalEdit = forwardRef((props, ref) => {
+const Modal = forwardRef((props, ref) => {
   return (
     <Background>
       <Content>
@@ -41,12 +41,12 @@ const Content = styled.div`
 const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 40vw;
-  height: 70vh;
+  width: 90vw;
+  height: 45vh;
   background-color: white;
   border: 1px solid whitesmoke;
-  border-radius: 7.5%;
+  border-radius: 12px;
 `;
 /****************************** Styled Components ******************************/
 
-export default ModalEdit;
+export default Modal;
