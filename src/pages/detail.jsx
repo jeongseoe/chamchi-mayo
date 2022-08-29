@@ -6,6 +6,7 @@ import useFetchPosts from "../hooks/useFetchPosts";
 import DetailContainer from "../components/detail/DetailContainer";
 import Header from "../components/common/header/Header";
 import Spinner from "../components/common/spinner/Spinner";
+import Toolbar from "../components/detail/Toolbar";
 
 const Detail = () => {
   const params = useParams();
@@ -16,23 +17,10 @@ const Detail = () => {
     <main>
       { !post && <Spinner /> }
       <Header />
-      <ArrowBackStyle>
-        <span className="material-symbols-outlined" >
-          arrow_back
-        </span>
-      </ArrowBackStyle>
+      <Toolbar post={post} />
       <DetailContainer post={ post } postId={ postId }/>
     </main>
   );
 };
-
-const ArrowBackStyle = styled.div`
-  padding: 8px 12px;
-  color: red;
-  font-size: 24px;
-  span {
-    font-size: 36px;
-  }
-`;
 
 export default Detail;
