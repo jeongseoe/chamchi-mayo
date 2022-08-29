@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { useRef, useState } from "react";
 
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 import Modal from "./Modal";
@@ -8,7 +7,7 @@ import CommonButton from "../common/button/CommonButton";
 import {
   TitleWrapper,
   ButtonWrapper,
-} from "../detail/DetailContainer";
+} from "./DetailStyle";
 
 const DeleteModal = (props) => {
   const handleClickDelete = () => console.log('zz');
