@@ -2,7 +2,7 @@ import { useRef, useState, } from "react";
 import styled from "@emotion/styled";
 import axios from "axios";
 
-import ModalEdit from "./ModalEdit";
+import Modal from "./Modal";
 import { colors } from "../../lib/constants/colors";
 import CommonButton from "../common/button/CommonButton";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
@@ -36,12 +36,12 @@ const DetailContainer = ({ post, postId }) => {
 
   const renderModalEdit = () => {
     return (
-    <ModalEdit ref={ modalRef }>
+    <Modal ref={ modalRef }>
         <TitleWrapper backgroundColor={ colors.ivory }>
           <StyledTextarea
             onChange={ handleChangeTitle }
             type="text" 
-            placeholder={ post && post.title } 
+            placeholder="제목"
             backgroundColor={ colors.ivory } />
         </TitleWrapper>
         <BodyWrapper backgroundColor={ colors.ivory }>
@@ -58,7 +58,7 @@ const DetailContainer = ({ post, postId }) => {
             <span onClick={ () => handleUpdatePost(URL, data) }>수정하기</span>
           </CommonButton>
         </ButtonWrapper>
-      </ModalEdit>
+      </Modal>
     );
   };
 
@@ -87,7 +87,7 @@ const DetailContainer = ({ post, postId }) => {
           type="button"
           backgroundColor={ colors.white }
           bodyColor={ colors.red }>
-          <span onClick={ () => setIsClickEdit(true) }>수정하기</span>
+          <div onClick={ () => setIsClickEdit(true) }>수정하기</div>
         </CommonButton>
       </ButtonWrapper>
     </Container>
@@ -99,7 +99,7 @@ const Container = styled.div`
   height: 60vh;
 `;
 
-const TitleWrapper = styled.div`
+export const TitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -109,7 +109,7 @@ const TitleWrapper = styled.div`
   border-radius: 12px;
 `;
 
-const BodyWrapper = styled.div`
+export const BodyWrapper = styled.div`
   display: flex;
   align-items: flex-start;
   height: 25vh;
@@ -119,13 +119,13 @@ const BodyWrapper = styled.div`
   border-radius: 12px;
 `;
 
-const ButtonWrapper = styled.div`
+export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const StyledTextarea = styled.textarea`
+export const StyledTextarea = styled.textarea`
   width: 100%;
   height: 100%;
   background-color: ${prop => prop.backgroundColor};
