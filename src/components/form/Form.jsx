@@ -105,150 +105,150 @@ export default Form;
 /****************************** Styled Components ******************************/
 //
 const ContentsWrap = styled.div`
-  width: 95%;
+width: 95%;
 
-  /* display: flex; */
-  align-items: center;
-  justify-content: center;
-`;
-
+/* display: flex; */
+align-items: center;
+justify-content: center;
+    `
 const StDiv = styled.div`
-  width: fit-content;
-  padding: 6px 20px;
-  margin: 10px;
-  border-radius: 30px;
-  background-color:  ${props => props.color};
-  color: white;
-`;
+width: fit-content;
+padding: 6px 20px;
+margin: 10px;
+border-radius: 30px;
+background-color:  ${props => props.color};
+color: white;
+    `
 
 //Inputs
 const InputWrap = styled.div`
-  width: 95%;
+width: 95%;
 
-  border: none;
-  border-radius: 8px;    
-  /* background-color: ${colors.yellow}; */
+border: none;
+border-radius: 8px;    
+/* background-color: ${colors.yellow}; */
 
-  margin: 1.5% auto;
+margin: 1.5% auto;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+display: flex;
+align-items: center;
+justify-content: center;
+    `
 
 const StLabel = styled.label`
-  width: 10vw;
-  min-width: 70px;
-  height: 45px;
-  margin-right: 1.5%;
-  padding: 2%;
+width: 10vw;
+min-width: 70px;
+height: 45px;
+margin-right: 1.5%;
+padding: 2%;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+display: flex;
+align-items: center;
+justify-content: center;
 
-  border-radius: 8px;    
-  background-color: ${colors.yellow};
-`;
+        border-radius: 8px;    
+        background-color: ${colors.yellow};
+    `
 
 const StInput = styled.input`
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;    
-  background-color: ${colors.yellow};
-`;
-
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;    
+        background-color: ${colors.yellow};
+    `
 //Animation Keys
 const vibration = keyframes`
-  from {
-      transform: rotate(-1deg);
-  }
-  to {
-      transform: rotate(1deg);
-  }    
-`;
+        from {
+            transform: rotate(-1deg);
+        }
+        to {
+            transform: rotate(1deg);
+
+        }    
+    `;
 
 const annoyingColor = keyframes`
-  0%{
-      opacity: 0;
-  }
-  100%{
-      opacity: 0;
-  }
-`;
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 0;
+        }
+        
+    `
 
 const StTextarea = styled.textarea`
-  width: 95%;
-  height: 50vh;
+        width: 95%;
+        height: 50vh;
 
-  margin: auto;
-  padding: 15px 2%;
+        margin: auto;
+        padding: 15px 2%;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-  border: none;
-  border-radius: 8px;
-  background-color: ${props => props.color};
+        border: none;
+        border-radius: 8px;
+        background-color: ${props => props.color};
 
-  ::placeholder {
-      color: black;
-      font-size: 1rem;
-  }
-
-  /* Animaation */
-  animation: ${(props) => props.isKeyDown ? css`${vibration} 0.1s` : null};
-  background-color: ${(props) => props.isKeyDown ? css`${annoyingColor}` : null};
-`;
+        ::placeholder {
+            color: black;
+            font-size: 1rem;
+        }
+        
+        /* Animaation */
+        animation: ${(props) => props.isKeyDown ? css`${vibration} 0.1s` : null};
+        background-color: ${(props) => props.isKeyDown ? css`${annoyingColor}` : null};
+        `;
 
 
 //button
 const AddBtn = styled.button`
-  background-color: ${props => props.color};
-  width: 150px;
-  height: 40px;
-  margin-left: 10px;
-  margin-top: 3%;
-  /* padding-top: 10px; */
+        background-color: ${props => props.color};
+        width: 150px;
+        height: 40px;
+        margin-left: 10px;
+        margin-top: 3%;
+        /* padding-top: 10px; */
+        
+        font-size: 1rem;
 
-  font-size: 1rem;
+        border-radius: 20px;
+        border: none;
+        cursor: pointer;
+        color: white;
 
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  color: white;
-
-  :disabled {
-      color: rgba(255,255,255,0.5);
-  }
-`;
+        :disabled {
+            color: rgba(255,255,255,0.5);
+        }
+    `
 
 //modal
 const ModalWrap = styled.div`
-
-`;
-
+        
+    `
 const ModalContents = styled.div`
-  margin-bottom: 30px;
-`;
+        margin-bottom: 30px;
+    `
 
 const ModalBtn = styled.button`
-  width: 100px;
-  height: 35px;
-  margin: 10px;
-  border: none;
-  border-radius: 4px;
+        width: 100px;
+        height: 35px;
+        margin: 10px;
+        border: none;
+        border-radius: 4px;
 
-  font-size: 0.7em;
-  background-color: ${props => props.color};
-  color: #DDD;
+        font-size: 0.7em;
+        background-color: ${props => props.color};
+        color: #DDD;
+        
+        :hover {
+            color: white;
+        }
 
-  :hover {
-      color: white;
-  }
-`;
+    `;
 
 
 /****************************** Styled Components ******************************/
