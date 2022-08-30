@@ -6,7 +6,6 @@ import { css, keyframes } from "@emotion/react";
 import { colors } from "../../lib/constants/colors";
 
 const Form = (props) => {
-
     const [input, setInput] = useState({writer:"", title:"", body:""});
     const [isKeyDown, setKeyDown] = useState(false);
 
@@ -23,7 +22,7 @@ const Form = (props) => {
     const isClickModalOutside = (e) => {
         if (isClickedEdit && !modalRef.current.contains(e.target)) {
             setIsClickedEdit(false);
-        }
+        };
     };
 
     //clean-up
@@ -45,25 +44,21 @@ const Form = (props) => {
                     <ModalBtn onClick={ () => setIsClickedEdit(false) } color={colors.blue}>취소</ModalBtn>
                 </ModalWrap>
             </ModalForm>
-        
-
-    )
-  }
+    );
+  };
 
   // 구현 문의!!
   // 짜증 추가 기능
   const addHandler = () => {
-    const { writer, title, body } = input
+    const { writer, title, body } = input;
     const annoyance = {
       id: +timestamp, //id 넣는 것 확인
       writer: writer,
       title: title,
       body: body
-    }
-
+    };
     // if (title === '' || desc === '' ) return            //빈 데이터로 추가시 반환
-
-  }
+  };
 
   //인풋 컨텐츠
   const inputHandler = (e) => {
@@ -76,12 +71,12 @@ const Form = (props) => {
     <ContentsWrap>
       {isClickedEdit && renderModalForm()}
       <StDiv color={colors.blue}>짜증 리스트 작성</StDiv>
-      <InputWrap>
+      <InputWrap isKeyDown={isKeyDown}>
         <StLabel htmlFor="writer">작성자</StLabel>
         <StInput name="writer" onChange={inputHandler} id="writer" />
       </InputWrap>
 
-      <InputWrap>
+      <InputWrap isKeyDown={isKeyDown}>
         <StLabel htmlFor="title">제목</StLabel>
         <StInput name="title" onChange={inputHandler} id="title" />
       </InputWrap>
@@ -94,23 +89,18 @@ const Form = (props) => {
         disabled={!input.writer || !input.title || !input.body}
         onClick={() => setIsClickedEdit(true)}
       >짜증 추가하기</AddBtn>
-
-
     </ContentsWrap>
-
-  )
-}
-
+  );
+};
 
 export default Form;
 
 /****************************** Styled Components ******************************/
 const ContentsWrap = styled.div`
   width: 95%;
-
-  /* display: flex; */
   align-items: center;
   justify-content: center;
+  animation: ${(props) => props.isKeyDown ? css`${vibration} 0.1s` : null};
 `;
 
 const StDiv = styled.div`
@@ -125,15 +115,13 @@ const StDiv = styled.div`
 //Inputs
 const InputWrap = styled.div`
   width: 95%;
-
   border: none;
   border-radius: 8px;
-
   margin: 1.5% auto;
-
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: ${(props) => props.isKeyDown ? css`${vibration} 0.1s` : null};
 `;
 
 const StLabel = styled.label`
@@ -142,11 +130,9 @@ const StLabel = styled.label`
   height: 45px;
   margin-right: 1.5%;
   padding: 2%;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   border-radius: 8px;    
   background-color: ${colors.ivory};
 `;
@@ -161,34 +147,37 @@ const StInput = styled.input`
 
 //Animation Keys
 const vibration = keyframes`
-  from {
-      transform: rotate(-1deg);
-  }
-  to {
-      transform: rotate(1deg);
-  }    
+  from {transform: rotate(-1deg);}
+  to {transform: rotate(1deg);}    
 `;
 
 const annoyingColor = keyframes`
   0%{
-      opacity: 0;
+    color: black
   }
-  100%{
-      opacity: 0;
+  10%{
+    color: ${colors.orange};
+  }
+  20% {
+      color: ${colors.red};
+  }
+  85% {
+      color: darkgray
+  }
+  100% {
+      color: black
   }
 `;
 
 const StTextarea = styled.textarea`
   width: 95%;
   height: 50vh;
-
   margin: auto;
   padding: 15px 2%;
-
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-
   border: none;
   border-radius: 8px;
   background-color: ${props => props.color};
@@ -199,8 +188,8 @@ const StTextarea = styled.textarea`
   }
 
   /* Animaation */
+  animation: ${annoyingColor} 3s linear ;
   animation: ${(props) => props.isKeyDown ? css`${vibration} 0.1s` : null};
-  background-color: ${(props) => props.isKeyDown ? css`${annoyingColor}` : null};
 `;
 //button
 const AddBtn = styled.button`
