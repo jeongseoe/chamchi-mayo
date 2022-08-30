@@ -1,4 +1,5 @@
-import styled from "@emotion/styled";
+import { useState } from "react";
+import axios from "axios";
 
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 import Modal from "./Modal";
@@ -7,28 +8,51 @@ import CommonButton from "../common/button/CommonButton";
 import {
   TitleWrapper,
   ButtonWrapper,
+  StyledInput,
 } from "./DetailStyle";
 
 const DeleteModal = (props) => {
-  const handleClickDelete = () => console.log('zz');
+  const [password, setPassword] = useState('');
+  const [errorMessages, setErrorMessages] = useState({});
+
+  const handleClickDelete = async () => {
+    const isPasswordMatched = password === props.post.password;
+    const URL = `${props.post.id}`;
+
+    if (isPasswordMatched) {
+      const response = await axios.delete(URL);
+      window.location.href = '/';
+    } else {
+      setErrorMessages({
+        message: "비밀번호가 일치하지않습니다.",
+      });
+    }
+  };
+
+  const renderErrorMessage = () => {
+    return (errorMessages && (
+      <strong style={ { color: colors.red } }>
+        {errorMessages.message}
+      </strong>
+    ));
+  };
+
   const handleClickOutSide = () => props.setIsClickDeleteIcon(false);
+  const handleChangePassword = (e) => setPassword(e.target.value);
 
   useOnClickOutside(props.modalRef, handleClickOutSide);
 
   return (
     <Modal ref={props.modalRef}>
-      <TitleWrapper backgroundColor={colors.ivory}>
-        <StyledInput
-          type="text" 
-          placeholder="아이디"
-          backgroundColor={colors.ivory} />
-      </TitleWrapper>
+      <p>비밀번호를 입력하세요.</p>
       <TitleWrapper backgroundColor={colors.ivory}>
         <StyledInput 
           type="password"
           placeholder="비밀번호" 
+          onChange={handleChangePassword}
           backgroundColor={colors.ivory}/>
       </TitleWrapper>
+      {renderErrorMessage()}          
       <ButtonWrapper>
         <CommonButton 
           type="button"
@@ -40,11 +64,5 @@ const DeleteModal = (props) => {
     </Modal>
   );
 };
-
-const StyledInput = styled.input`
-  width: 100vw;
-  background-color: ${prop => prop.backgroundColor};
-  border: none;
-`;
 
 export default DeleteModal;
