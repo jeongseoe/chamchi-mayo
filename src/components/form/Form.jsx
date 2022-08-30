@@ -77,7 +77,7 @@ const Form = (props) => {
                                 
                 <StTextarea name="body" onChange={inputHandler} color={colors.yellow} placeholder="내용"
                 // className={input.body!==''? annoyingBody:StTextarea}
-                onKeyUp={keytyping}
+                // onKeyUp={keytyping}
                 
                 >
                 </StTextarea>
@@ -196,6 +196,7 @@ export default Form;
         }
         /* animation: ${vibration} 0.1s;    */
         animation: ${(props) => props.onKeyUp ? css`${vibration} 0.1s` : null};
+
       
        
         
