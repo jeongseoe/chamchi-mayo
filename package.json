@@ -41,9 +41,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5001",
-  "main": "index.js",
-  "repository": "https://github.com/m1nsuppp/chamchi-mayo.git",
-  "author": "daehyunkim <find.acho@gmail.com>",
-  "license": "MIT"
+  "proxy": "http://localhost:5001"
 }
