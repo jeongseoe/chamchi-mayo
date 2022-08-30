@@ -15,13 +15,12 @@ const Form = (props) => {
 
     const [isClickedEdit, setIsClickedEdit] = useState(false);
     const modalRef = useRef();
-    
+
     // mock API
     // 찾아보기
-    
+
     const timestamp = new Date().getTime();
     // console.log(timestamp)
-
 
     //모달 영역을 벗어났는지 확인
     const isClickModalOutside = (e) => {
@@ -29,7 +28,7 @@ const Form = (props) => {
             setIsClickedEdit(false);
         }
     };
-    
+
     //clean-up
     useEffect(() => {
         document.addEventListener('mousedown', isClickModalOutside);
@@ -73,7 +72,7 @@ const Form = (props) => {
         setInput({...input, [name]: value});
         setKeyDown(!isKeyDown);
     };
-    
+
     return (
         <ContentsWrap>
                 { isClickedEdit && renderModalForm() }
@@ -162,37 +161,22 @@ export default Form;
     `;  
 
     const annoyingColor = keyframes`
-        0% {
-            color: black
-        }
-        10% {
-            color: ${colors.orange};
-        }
-        20% {
-            color: ${colors.red};
-        }
-        85% {
-            color: darkgray
-        }
-        100% {
-            color: black
-        }
+        0% { color: black; }
+        10% { color: ${colors.orange}; }
+        20% { color: ${colors.red}; }
+        85% { color: darkgray; }
+        100% { color: black; }
     `;
-
-    
 
     const StTextarea = styled.textarea`
         width: 95%;
         height: 50vh;
-
         margin: auto;
         padding: 15px 2%;
         font-size: 1.5rem;
-
         display: flex;
         align-items: center;
         justify-content: center;
-
         border: none;
         border-radius: 8px;
         background-color: ${props => props.color};
@@ -200,8 +184,8 @@ export default Form;
         ::placeholder {
             color: black;
             font-size: 1rem;
-        }
-        
+        };
+
         /* Animaation */
         animation: ${annoyingColor} 3s linear ;
         animation: ${(props) => props.isKeyDown ? css`${vibration} 0.1s` : null};
@@ -213,11 +197,8 @@ export default Form;
         width: 150px;
         height: 40px;
         margin-left: 10px;
-        margin-top: 3%;
-        /* padding-top: 10px; */
-        
+        margin-top: 3%;     
         font-size: 1rem;
-
         border-radius: 20px;
         border: none;
         cursor: pointer;
