@@ -11,7 +11,7 @@ import { colors } from "../../lib/constants/colors";
 
 const Form = (props) => {
     const [input, setInput] = useState({writer:"", title:"", body:""});
-    const [isKeyDown, setKeyDown] = useState(false)
+    const [isKeyDown, setKeyDown] = useState(false);
 
     const [isClickedEdit, setIsClickedEdit] = useState(false);
     const modalRef = useRef();
@@ -49,41 +49,41 @@ const Form = (props) => {
                     <ModalBtn onClick={ () => setIsClickedEdit(false) } color={colors.blue}>취소</ModalBtn>
                 </ModalWrap>
             </ModalForm>
-        )
-    }
+        );
+    };
 
     // 구현 문의!!
     // 짜증 추가 기능
     const addHandler = () => {
-        const { writer, title, body } = input
+        const { writer, title, body } = input;
         const annoyance = {
             id: +timestamp, //id 넣는 것 확인
             writer: writer,
             title: title,
             body: body
-        }
+        };
 
         // if (title === '' || desc === '' ) return            //빈 데이터로 추가시 반환
             
-    }
+    };
 
     //인풋 컨텐츠
     const inputHandler = (e) => {
         const { name, value } = e.target;
         setInput({...input, [name]: value});
-        setKeyDown(!isKeyDown)
+        setKeyDown(!isKeyDown);
     };
     
     return (
         <ContentsWrap>
                 { isClickedEdit && renderModalForm() }
                 <StDiv color={colors.blue}>짜증 리스트 작성</StDiv>
-                <InputWrap>
+                <InputWrap isKeyDown={isKeyDown}>
                     <StLabel htmlFor="writer">작성자</StLabel>
                         <StInput name="writer" onChange={inputHandler} id="writer"/>
                 </InputWrap>
 
-                <InputWrap>
+                <InputWrap isKeyDown={isKeyDown}>
                     <StLabel htmlFor="title">제목</StLabel>
                         <StInput name="title" onChange={inputHandler} id="title"/>
                 </InputWrap>
@@ -96,8 +96,6 @@ const Form = (props) => {
                 disabled={!input.writer || !input.title || !input.body}
                 onClick={ () => setIsClickedEdit(true) }
                 >짜증 추가하기</AddBtn>
-
-            
         </ContentsWrap>
         
     )
@@ -114,6 +112,7 @@ export default Form;
         /* display: flex; */
         align-items: center;
         justify-content: center;
+        animation: ${(props) => props.isKeyDown ? css`${vibration} 0.1s` : null};
     `
     const StDiv = styled.div`
         width: fit-content;
@@ -127,16 +126,13 @@ export default Form;
 //Inputs
     const InputWrap = styled.div`
         width: 95%;
-        
         border: none;
-        border-radius: 8px;    
-        /* background-color: ${ colors.yellow }; */
-        
+        border-radius: 8px;          
         margin: 1.5% auto;
-
         display: flex;
         align-items: center;
         justify-content: center;
+        animation: ${(props) => props.isKeyDown ? css`${vibration} 0.1s` : null};
     `
 
     const StLabel = styled.label`
@@ -145,42 +141,45 @@ export default Form;
         height: 45px;
         margin-right: 1.5%;
         padding: 2%;
-        
         display: flex;
         align-items: center;
         justify-content: center;
-        
         border-radius: 8px;    
         background-color: ${colors.yellow};
     `
-
     const StInput = styled.input`
         width: 100%;
         padding: 12px;
         border: none;
         border-radius: 8px;    
         background-color: ${colors.yellow};
+        animation: ${(props) => props.isKeyDown ? css`${vibration} 0.1s` : null};
     `
     //Animation Keys
     const vibration = keyframes`
-        from {
-            transform: rotate(-1deg);
-        }
-        to {
-            transform: rotate(1deg);
-
-        }    
+        from {transform: rotate(-1deg);}
+        to {transform: rotate(1deg);}    
     `;  
 
     const annoyingColor = keyframes`
-        0%{
-            opacity: 0;
+        0% {
+            color: black
         }
-        100%{
-            opacity: 0;
+        10% {
+            color: ${colors.orange};
         }
-        
-    `
+        20% {
+            color: ${colors.red};
+        }
+        85% {
+            color: darkgray
+        }
+        100% {
+            color: black
+        }
+    `;
+
+    
 
     const StTextarea = styled.textarea`
         width: 95%;
@@ -188,6 +187,7 @@ export default Form;
 
         margin: auto;
         padding: 15px 2%;
+        font-size: 1.5rem;
 
         display: flex;
         align-items: center;
@@ -203,10 +203,9 @@ export default Form;
         }
         
         /* Animaation */
+        animation: ${annoyingColor} 3s linear ;
         animation: ${(props) => props.isKeyDown ? css`${vibration} 0.1s` : null};
-        background-color: ${(props) => props.isKeyDown ? css`${annoyingColor}` : null};
         `;
-
 
 //button
     const AddBtn = styled.button`
@@ -229,7 +228,7 @@ export default Form;
         }
     `
     
-    //modal
+//modal
     const ModalWrap = styled.div`
         
     `
@@ -253,8 +252,4 @@ export default Form;
         }
 
     `
-
-    const ModalCancelBtn = styled
-    
-
 /****************************** Styled Components ******************************/
