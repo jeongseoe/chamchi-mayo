@@ -54,15 +54,6 @@ const DetailContainer = ({ post, postId }) => {
 const Container = styled.div`
   height: 60vh;
 `;
-
-const StyledTextarea = styled.textarea`
-  width: 100%;
-  height: 100%;
-  background-color: ${prop => prop.backgroundColor};
-  border: none;
-  resize: none;
-`;
-
 /****************************** Styled Components ******************************/
 
 export default DetailContainer;

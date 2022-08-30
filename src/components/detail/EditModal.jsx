@@ -63,6 +63,7 @@ const EditModal = (props) => {
     );  
 };
 
+/****************************** Styled Components ******************************/
 const StyledTextarea = styled.textarea`
   width: 100%;
   height: 100%;
@@ -70,5 +71,6 @@ const StyledTextarea = styled.textarea`
   border: none;
   resize: none;
 `;
+/****************************** Styled Components ******************************/
 
 export default EditModal;
