@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 
 import useOnClickOutside from "../../hooks/useOnClickOutside";
@@ -12,6 +12,7 @@ import {
 } from "./DetailStyle";
 
 const DeleteModal = (props) => {
+  const passwordRef = useRef();
   const [password, setPassword] = useState('');
   const [errorMessages, setErrorMessages] = useState({});
 
@@ -42,11 +43,16 @@ const DeleteModal = (props) => {
 
   useOnClickOutside(props.modalRef, handleClickOutSide);
 
+  useEffect(() => {
+    passwordRef.current.focus();
+  });
+
   return (
     <Modal ref={props.modalRef}>
       <p>비밀번호를 입력하세요.</p>
       <TitleWrapper backgroundColor={colors.ivory}>
-        <StyledInput 
+        <StyledInput
+          ref={passwordRef} 
           type="password"
           placeholder="비밀번호" 
           onChange={handleChangePassword}
