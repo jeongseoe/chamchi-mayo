@@ -11,7 +11,7 @@ import {
   ButtonWrapper,
 } from "./DetailStyle";
 
-const DetailContainer = ({ post, postId }) => {
+const DetailContainer = ({ post }) => {
   const [isClickEdit, setIsClickEdit] = useState(false);
   const modalRef = useRef();
   const handleClickOutside = () => setIsClickEdit(false);
