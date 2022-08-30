@@ -38,15 +38,15 @@ const Content = styled.div`
   justify-content: center;
 `;
 
-const ModalContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 40vw;
-  height: 70vh;
-  background-color: white;
-  border: 1px solid whitesmoke;
-  border-radius: 7.5%;
-`;
+// const ModalContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   width: 40vw;
+//   height: 70vh;
+//   background-color: white;
+//   border: 1px solid whitesmoke;
+//   border-radius: 7.5%;
+// `;
 
 
 
@@ -66,11 +66,12 @@ border-radius: 8px;
 display: flex;
 align-items: center;
 justify-content: center;
+
 `
 
-const ModalBtn = styled.button`
-color: gray;
-`
+// const ModalBtn = styled.button`
+// color: gray;
+// `
 
 
 

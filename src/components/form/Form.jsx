@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import useFetchPost from "../../hooks/useFetchPost";
+import ModalForm from "./ModalForm";
 
 import styled from "@emotion/styled";
 import { colors } from "../../lib/constants/colors";
@@ -10,13 +11,37 @@ import { css, keyframes } from "@emotion/react";
 
 const Form = (props) => {
     const [input, setInput] = useState({writer:"", title:"", body:""});
+    const [isKeyDown, setKeyDown] = useState(false)
 
     const [isClickedEdit, setIsClickedEdit] = useState(false);
     const modalRef = useRef();
     
+    // mock API
+    // 찾아보기
     
     const timestamp = new Date().getTime();
     // console.log(timestamp)
+
+
+    //모달 영역을 벗어났는지 확인
+    const isClickModalOutside = (e) => {
+        if (isClickedEdit && !modalRef.current.contains(e.target)) {
+            setIsClickedEdit(false);
+        }
+    };
+    
+    //모달 렌더
+    const renderModalForm = () => {
+        return(
+            <ModalForm>
+                <ModalWrap>
+                    <div>짜증을 추가 하시겠어요?</div>
+                    <ModalBtn onClick={addHandler}>확인</ModalBtn>
+                    <ModalBtn >취소</ModalBtn>
+                </ModalWrap>
+            </ModalForm>
+        )
+    }
 
     // 구현 문의!!
     // 짜증 추가 기능
@@ -37,62 +62,33 @@ const Form = (props) => {
     const inputHandler = (e) => {
         const { name, value } = e.target;
         setInput({...input, [name]: value});
+        setKeyDown(!isKeyDown)
     };
-        
     
-
-    //keytyping use onKeyDown
-    // const keytyping = (e) => {
-    //     const angry =  
-    //     // e.preventDefault();
-    //     // console.log(e.key)
-    //     css`
-    //     animation: ${vibration} 0.1s;
-    //     background-color: red;
-    //     `
-    //     return(angry)
-    //     // :null
-    //     // console.log(e.target)
-    // }
-
-    // console.log(input)
-    
-    
-    // var onkeydown: ((this: Window, ev: KeyboardEvent) => any) | null
-
     return (
         <ContentsWrap>
+                { isClickedEdit && renderModalForm() }
                 <StDiv color={colors.blue}>짜증 리스트 작성</StDiv>
                 <InputWrap>
                     <StLabel htmlFor="writer">작성자</StLabel>
                         <StInput name="writer" onChange={inputHandler} id="writer"/>
-                    
                 </InputWrap>
 
                 <InputWrap>
                     <StLabel htmlFor="title">제목</StLabel>
                         <StInput name="title" onChange={inputHandler} id="title"/>
-                    
                 </InputWrap>
                                 
-                <StTextarea name="body" onChange={inputHandler} color={colors.yellow} placeholder="내용"
-                // className={input.body!==''? annoyingBody:StTextarea}
-                // onKeyUp={keytyping}
-                
+                <StTextarea name="body" color={colors.yellow} placeholder="내용"
+                onChange={inputHandler} isKeyDown={isKeyDown} 
                 >
                 </StTextarea>
                 <AddBtn color={colors.blue}
                 disabled={!input.writer || !input.title || !input.body}
-                onClick={addHandler}
+                onClick={ () => setIsClickedEdit(true) }
                 >짜증 추가하기</AddBtn>
 
-                {/* <ModalContainer>
-                    <div>짜증을 추가 하시겠어요?</div>
-                    <ModalBtn>확인</ModalBtn>
-                    <ModalBtn>취소</ModalBtn>
-                </ModalContainer> */}
-                    
-                
+            
         </ContentsWrap>
         
     )
@@ -100,13 +96,6 @@ const Form = (props) => {
 
 
 export default Form;
-
-
-
-
-
-
-
 
 /****************************** Styled Components ******************************/
 //
@@ -170,8 +159,19 @@ export default Form;
         }
         to {
             transform: rotate(1deg);
+
         }    
     `;  
+
+    const annoyingColor = keyframes`
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 0;
+        }
+        
+    `
 
     const StTextarea = styled.textarea`
         width: 95%;
@@ -187,27 +187,16 @@ export default Form;
         border: none;
         border-radius: 8px;
         background-color: ${props => props.color};
-        /* ${(props) => props.key|| css`background-color:rgba(255,0,0,0.1)`}; */
-        
 
         ::placeholder {
             color: black;
             font-size: 1rem;
         }
-        /* animation: ${vibration} 0.1s;    */
-        animation: ${(props) => props.onKeyUp ? css`${vibration} 0.1s` : null};
-
-      
-       
         
+        /* Animaation */
+        animation: ${(props) => props.isKeyDown ? css`${vibration} 0.1s` : null};
+        background-color: ${(props) => props.isKeyDown ? css`${annoyingColor}` : null};
         `;
-
-    //Animation
-    // const annoyingBody = styled(StTextarea)`
-    //     animation: ${vibration} 0.1s;
-    //     animation: ${(props) => props.onKeyUp||`${vibration} 0.1s `};
-    // `
-    
 
 
 //button
@@ -229,6 +218,15 @@ export default Form;
         :disabled {
             color: rgba(255,255,255,0.5);
         }
+    `
+    
+    //modal
+    const ModalWrap = styled.div`
         
     `
+    const ModalBtn = styled.button`
+        color: gray;
+    `
+    
+
 /****************************** Styled Components ******************************/
