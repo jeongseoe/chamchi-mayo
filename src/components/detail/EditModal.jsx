@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import axios from "axios";
 
@@ -17,8 +17,9 @@ const isEmpty = (string) => {
 };
 
 const EditModal = (props) => {
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
+  const passwordRef = useRef();
+  const [title, setTitle] = useState(props.post.title);
+  const [body, setBody] = useState(props.post.body);
   const [password, setPassword] = useState('');
   const [errorMessages, setErrorMessages] = useState({});
   const errors = {
@@ -76,11 +77,16 @@ const EditModal = (props) => {
     ));
   };
 
+  useEffect(() => {
+    passwordRef.current.focus();
+  }, []);
+
   return (
     <Modal ref={ props.modalRef }>
       <p>비밀번호를 입력하세요.</p>
       <TitleWrapper backgroundColor={colors.ivory}>
         <StyledInput
+          ref={passwordRef}
           onChange={ (e) => handleChangeInput(e, setPassword) }
           type="password"
           placeholder="비밀번호"
@@ -89,18 +95,20 @@ const EditModal = (props) => {
       { renderErrorMessage("password") }  
         <TitleWrapper backgroundColor={ colors.ivory }>
           <StyledTextarea
-            onChange={ (e) => handleChangeInput(e, setTitle) }
-            type="text" 
+            value={title} 
+            type="text"
             placeholder="제목"
-            backgroundColor={ colors.ivory } />
+            backgroundColor={ colors.ivory } 
+            onChange={ (e) => handleChangeInput(e, setTitle) }/>
         </TitleWrapper>
         { renderErrorMessage("title") }  
         <BodyWrapper backgroundColor={ colors.ivory }>
-          <StyledTextarea 
-            onChange={ (e) => handleChangeInput(e, setBody) }
+          <StyledTextarea
+            value={body} 
             type="text" 
             placeholder="시원하게 속풀이 해요!!"
-            backgroundColor={ colors.ivory } />
+            backgroundColor={ colors.ivory } 
+            onChange={ (e) => handleChangeInput(e, setBody) } />
         </BodyWrapper>
         { renderErrorMessage("body") }  
         <ButtonWrapper>
