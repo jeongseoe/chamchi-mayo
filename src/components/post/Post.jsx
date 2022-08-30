@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import useFetchPost from "../../hooks/hook";
+import styled from "@emotion/styled";
+import useFetchPost from "../../hooks/useFetchPosts";
 import List from "../post/List";
 
 const PostTitle = styled.div`
@@ -13,8 +13,6 @@ margin-bottom: 20px;
 
 const Post = () => {
     const posts = useFetchPost(null);
-    console.log(posts);
-
 
     return (
         <>
