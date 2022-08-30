@@ -1,10 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import useFetchPost from "../../hooks/useFetchPost";
 import ModalForm from "./ModalForm";
 
 import styled from "@emotion/styled";
-import { colors } from "../../lib/constants/colors";
 import { css, keyframes } from "@emotion/react";
+import { colors } from "../../lib/constants/colors";
 
 
 
@@ -30,14 +30,23 @@ const Form = (props) => {
         }
     };
     
+    //clean-up
+    useEffect(() => {
+        document.addEventListener('mousedown', isClickModalOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', isClickModalOutside)
+        } ;
+    });
+
     //모달 렌더
     const renderModalForm = () => {
         return(
-            <ModalForm>
+            <ModalForm ref={ modalRef }>
                 <ModalWrap>
-                    <div>짜증을 추가 하시겠어요?</div>
-                    <ModalBtn onClick={addHandler}>확인</ModalBtn>
-                    <ModalBtn >취소</ModalBtn>
+                    <ModalContents>짜증을 추가 하시겠어요?</ModalContents>
+                    <ModalBtn onClick={addHandler} color={colors.blue}>확인</ModalBtn>
+                    <ModalBtn onClick={ () => setIsClickedEdit(false) } color={colors.blue}>취소</ModalBtn>
                 </ModalWrap>
             </ModalForm>
         )
@@ -224,9 +233,28 @@ export default Form;
     const ModalWrap = styled.div`
         
     `
-    const ModalBtn = styled.button`
-        color: gray;
+    const ModalContents = styled.div`
+        margin-bottom: 30px;
     `
+
+    const ModalBtn = styled.button`
+        width: 100px;
+        height: 35px;
+        margin: 10px;
+        border: none;
+        border-radius: 4px;
+
+        font-size: 0.7em;
+        background-color: ${props => props.color};
+        color: #DDD;
+        
+        :hover {
+            color: white;
+        }
+
+    `
+
+    const ModalCancelBtn = styled
     
 
 /****************************** Styled Components ******************************/
