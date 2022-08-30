@@ -1,10 +1,12 @@
-import CommonButton from "../components/common/button/CommonButton";
+import Header from "../components/common/header/Header";
+import Post from "../components/post/Post";
 
 const Posts = () => {
     return (
-        <CommonButton>
-            <span>여기는 리스트 페이지 입니다!</span>
-        </CommonButton>
+      <main>
+        <Header />
+        <Post />
+      </main>
     );
 };
 
