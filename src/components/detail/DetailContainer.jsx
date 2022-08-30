@@ -22,7 +22,7 @@ const DetailContainer = ({ post, postId }) => {
     <Container>
       {isClickEdit && 
         <EditModal
-          postId={postId}
+          post={post}
           modalRef={modalRef}/>
       }
       <TitleWrapper backgroundColor={ colors.ivory }>
