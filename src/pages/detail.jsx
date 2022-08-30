@@ -1,5 +1,4 @@
 // 상세
-import styled from "@emotion/styled";
 import { useParams } from "react-router-dom";
 
 import useFetchPosts from "../hooks/useFetchPosts";
