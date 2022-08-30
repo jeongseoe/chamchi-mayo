@@ -1,11 +1,13 @@
 // 글쓰기
-import CommonButton from "../components/common/button/CommonButton";
+import Header from "../components/common/header/Header";
+import Form from "../components/form/Form";
 
 const Write = () => {
   return (
-    <CommonButton>
-      <span>여기는 업로드 페이지입니다!</span>
-    </CommonButton>
+    <div>
+        <Header/>
+        <Form/>
+    </div>    
   );  
 };
 
