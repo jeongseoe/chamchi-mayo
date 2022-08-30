@@ -26,3 +26,9 @@ export const ButtonWrapper = styled.div`
   align-items: center;
 `;
 
+export const StyledInput = styled.input`
+  width: 100vw;
+  background-color: ${prop => prop.backgroundColor};
+  border: none;
+`;
+
