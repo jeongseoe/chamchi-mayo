@@ -22,7 +22,6 @@ const Post = () => {
 
     if (entry.isIntersecting) {
       setPage(prev => prev + 1);
-      console.log('지금 데이터 더 불러오삼 ㅋㅋ');
     }
   };
   const options = {
