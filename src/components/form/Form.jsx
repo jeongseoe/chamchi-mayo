@@ -6,44 +6,44 @@ import { css, keyframes } from "@emotion/react";
 import { colors } from "../../lib/constants/colors";
 
 const Form = (props) => {
-    const [input, setInput] = useState({writer:"", title:"", body:""});
-    const [isKeyDown, setKeyDown] = useState(false);
+  const [input, setInput] = useState({ writer: "", title: "", body: "" });
+  const [isKeyDown, setKeyDown] = useState(false);
 
-    const [isClickedEdit, setIsClickedEdit] = useState(false);
-    const modalRef = useRef();
+  const [isClickedEdit, setIsClickedEdit] = useState(false);
+  const modalRef = useRef();
 
-    // mock API
-    // 찾아보기
+  // mock API
+  // 찾아보기
 
-    const timestamp = new Date().getTime();
-    // console.log(timestamp)
+  const timestamp = new Date().getTime();
+  // console.log(timestamp)
 
-    //모달 영역을 벗어났는지 확인
-    const isClickModalOutside = (e) => {
-        if (isClickedEdit && !modalRef.current.contains(e.target)) {
-            setIsClickedEdit(false);
-        };
+  //모달 영역을 벗어났는지 확인
+  const isClickModalOutside = (e) => {
+    if (isClickedEdit && !modalRef.current.contains(e.target)) {
+      setIsClickedEdit(false);
     };
+  };
 
-    //clean-up
-    useEffect(() => {
-        document.addEventListener('mousedown', isClickModalOutside);
+  //clean-up
+  useEffect(() => {
+    document.addEventListener('mousedown', isClickModalOutside);
 
-        return () => {
-            document.removeEventListener('mousedown', isClickModalOutside)
-        } ;
-    });
+    return () => {
+      document.removeEventListener('mousedown', isClickModalOutside)
+    };
+  });
 
-    //모달 렌더
-    const renderModalForm = () => {
-        return(
-            <ModalForm ref={ modalRef }>
-                <ModalWrap>
-                    <ModalContents>짜증을 추가 하시겠어요?</ModalContents>
-                    <ModalBtn onClick={addHandler} color={colors.blue}>확인</ModalBtn>
-                    <ModalBtn onClick={ () => setIsClickedEdit(false) } color={colors.blue}>취소</ModalBtn>
-                </ModalWrap>
-            </ModalForm>
+  //모달 렌더
+  const renderModalForm = () => {
+    return (
+      <ModalForm ref={modalRef}>
+        <ModalWrap>
+          <ModalContents>짜증을 추가 하시겠어요?</ModalContents>
+          <ModalBtn onClick={addHandler} color={colors.blue}>확인</ModalBtn>
+          <ModalBtn onClick={() => setIsClickedEdit(false)} color={colors.blue}>취소</ModalBtn>
+        </ModalWrap>
+      </ModalForm>
     );
   };
 

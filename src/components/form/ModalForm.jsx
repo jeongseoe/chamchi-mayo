@@ -5,8 +5,8 @@ const ModalForm = forwardRef((props, ref) => {
   return (
     <Background>
       <Content>
-        <ModalContainer ref={ ref }>
-          { props.children }
+        <ModalContainer ref={ref}>
+          {props.children}
         </ModalContainer>
       </Content>
     </Background>
