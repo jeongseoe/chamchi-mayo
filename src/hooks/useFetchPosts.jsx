@@ -11,8 +11,6 @@ import axios from "axios";
 const useFetchPosts = (postId, page) => {
   const [posts, setPosts] = useState(null);
 
-  console.log(page);
-
   const fetchPosts = async () => {
     const URL = postId !== null ? `http://localhost:5001/posts/${postId}` : `http://localhost:5001/posts`;
     const response = await axios.get(URL).catch(error => console.log(error));
