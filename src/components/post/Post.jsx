@@ -15,11 +15,11 @@ const PostTitle = styled.div`
 const Post = () => {
   const boxRef = useRef();
   const [page, setPage] = useState(1);
-  const posts = useFetchPost(null, page);
+  const posts = useFetchPost(null, page); // 여기에 page 값이 제대로 반영되는지 확인해봐야...
 
   const onIntersect = (entries, observer) => {
     const [ entry ] = entries;
-    // setIsVisible(entry.isIntersecting);
+
     if (entry.isIntersecting) {
       setPage(prev => prev + 1);
       console.log('지금 데이터 더 불러오삼 ㅋㅋ');
@@ -43,8 +43,6 @@ const Post = () => {
       }
     }
   }, [boxRef, options]);
-
-  console.log(page);
 
   return (
     <>
