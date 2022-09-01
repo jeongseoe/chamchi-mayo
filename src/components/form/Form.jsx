@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
-import ModalForm from "./ModalForm";
-
+import axios from "axios";
 import styled from "@emotion/styled";
 import { css, keyframes } from "@emotion/react";
-import { colors } from "../../lib/constants/colors";
 
-const Form = (props) => {
-  const [input, setInput] = useState({ writer: "", title: "", body: "" });
+import { colors } from "../../lib/constants/colors";
+import ModalForm from "./ModalForm";
+
+const Form = () => {
+  const [input, setInput] = useState({ writer: "", title: "", body: "", password: "" });
   const [isKeyDown, setKeyDown] = useState(false);
 
   const [isClickedEdit, setIsClickedEdit] = useState(false);
@@ -49,15 +50,21 @@ const Form = (props) => {
 
   // 구현 문의!!
   // 짜증 추가 기능
-  const addHandler = () => {
-    const { writer, title, body } = input;
+  const addHandler = async () => {
+    const { writer, title, body, password } = input;
     const annoyance = {
       id: +timestamp, //id 넣는 것 확인
       writer: writer,
       title: title,
-      body: body
+      body: body,
+      password: password,
     };
-    // if (title === '' || desc === '' ) return            //빈 데이터로 추가시 반환
+
+    const URL = 'http://localhost:5001/posts';
+
+    const response = await axios.post(URL, annoyance);
+
+    if (response) window.location.href = '/';
   };
 
   //인풋 컨텐츠
@@ -71,6 +78,10 @@ const Form = (props) => {
     <ContentsWrap>
       {isClickedEdit && renderModalForm()}
       <StDiv color={colors.blue}>짜증 리스트 작성</StDiv>
+      <InputWrap isKeyDown={isKeyDown}>
+        <StLabel htmlFor="password">암호</StLabel>
+        <StInput type="password" name="password" onChange={inputHandler} id="password" />
+      </InputWrap>
       <InputWrap isKeyDown={isKeyDown}>
         <StLabel htmlFor="writer">작성자</StLabel>
         <StInput name="writer" onChange={inputHandler} id="writer" />
@@ -86,7 +97,7 @@ const Form = (props) => {
       >
       </StTextarea>
       <AddBtn color={colors.blue}
-        disabled={!input.writer || !input.title || !input.body}
+        disabled={!input.writer || !input.title || !input.body || !input.password}
         onClick={() => setIsClickedEdit(true)}
       >짜증 추가하기</AddBtn>
     </ContentsWrap>
@@ -181,12 +192,10 @@ const StTextarea = styled.textarea`
   border: none;
   border-radius: 8px;
   background-color: ${props => props.color};
-
   ::placeholder {
       color: black;
       font-size: 1rem;
   }
-
   /* Animaation */
   animation: ${annoyingColor} 3s linear ;
   animation: ${(props) => props.isKeyDown ? css`${vibration} 0.1s` : null};
@@ -199,23 +208,19 @@ const AddBtn = styled.button`
   margin-left: 10px;
   margin-top: 3%;
   
-
   font-size: 1rem;
-
   border-radius: 20px;
   border: none;
   cursor: pointer;
   color: white;
-
-
   :disabled {
       color: rgba(255,255,255,0.5);
+      pointer-events: none;
   }
 `;
 
 //modal
 const ModalWrap = styled.div`
-
 `;
 
 const ModalContents = styled.div`
@@ -228,11 +233,9 @@ const ModalBtn = styled.button`
   margin: 10px;
   border: none;
   border-radius: 4px;
-
   font-size: 0.7em;
   background-color: ${props => props.color};
   color: #DDD;
-
   :hover {
       color: white;
   }
