@@ -1,51 +1,55 @@
-// 홈
-import CommonButton from "../components/common/button/CommonButton";
-import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
+
 import Header from "../components/common/header/Header";
+import { colors } from "../lib/constants/colors";
 
 const Home = () => {
-  const navigate = useNavigate();
   return (
     <main>
       <Header />
-      <div>
-        <StWriteInto onClick={() => {
-          navigate('/write');
-        }}>
-          분노 작성하기 ..!!!!
-        </StWriteInto>
-        <StPostInto onClick={() => {
-          navigate('/posts');
-        }}>
-          분노 목록 보러가기 !!
-        </StPostInto>
-      </div>
-
+      <Container>
+        <Link to="/write">
+          <Wrapper>
+            <div>짜증내보리기</div>
+          </Wrapper>
+        </Link>
+        <Link to="/posts">
+          <Wrapper>
+            <div>그들의 분노</div>
+          </Wrapper>
+        </Link>
+        <ImgContainer />
+      </Container>
     </main>
   );
 };
 
+const Container = styled.div`
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ImgContainer = styled.div`
+  width: 30vw;
+  height: 30vw;
+  background-image: url('https://user-images.githubusercontent.com/75208324/187640039-558f3c5e-490a-4997-9862-a17fb01b3a72.jpeg');
+  background-size: cover;
+`;
+
+const Wrapper = styled.div`
+  margin-top: 1.5%;
+  padding-bottom: 1.5%;
+  width: 30vw;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${colors.blue};
+  color: ${colors.white}
+`;
+
 export default Home;
-
-const StWriteInto = styled.div`
-  background-color: #FAF6BF;
-  border-radius: 10px;
-  width: 60vw;
-  text-align: center;
-  font-size: 50px;
-  margin:auto;
-  margin: 50px auto 50px auto
-`;
-
-const StPostInto = styled.div`
-  background-color: #FAF6BF;
-  border-radius: 10px;
-  width: 60vw;
-  text-align: center;
-  font-size: 50px;
-  margin: 50px auto 50px auto
-  
-`;
-
-// 
