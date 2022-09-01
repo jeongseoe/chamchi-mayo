@@ -43,7 +43,6 @@ const Reply = () => {
         const res = await axios.get(URL, {
           CancelToken: source.token,
         });
-        console.log(res.data[id]);
         setReplies(res.data[id]);
       } catch (error) {
         if (axios.isCancel(error)) {
