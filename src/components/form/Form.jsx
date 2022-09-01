@@ -6,7 +6,7 @@ import { css, keyframes } from "@emotion/react";
 import { colors } from "../../lib/constants/colors";
 import ModalForm from "./ModalForm";
 
-const Form = (props) => {
+const Form = () => {
   const [input, setInput] = useState({ writer: "", title: "", body: "", password: "" });
   const [isKeyDown, setKeyDown] = useState(false);
 
@@ -79,7 +79,7 @@ const Form = (props) => {
       {isClickedEdit && renderModalForm()}
       <StDiv color={colors.blue}>짜증 리스트 작성</StDiv>
       <InputWrap isKeyDown={isKeyDown}>
-        <StLabel htmlFor="password">비밀번호</StLabel>
+        <StLabel htmlFor="password">암호</StLabel>
         <StInput type="password" name="password" onChange={inputHandler} id="password" />
       </InputWrap>
       <InputWrap isKeyDown={isKeyDown}>
