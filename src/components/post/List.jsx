@@ -13,10 +13,10 @@ const List = forwardRef((props, ref) => {
         <StBox ref={ref} onClick={() => {
           navigate(`/posts/${props.post.id}`);
         }}>
-          <p style={{ color: colors.orange }}>
+          <p style={{ marginTop: "5px", color: colors.orange }}>
             {props.post.title}
           </p>
-          <p style={{ marginLeft: "50px", color: colors.red, marginTop: "5px" }}>
+          <p style={{color: colors.red, marginTop: "5px" }}>
             {props.post.writer}
           </p>
         </StBox>
